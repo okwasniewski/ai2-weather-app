@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Location;
 use App\Form\LocationType;
 use App\Repository\LocationRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,6 +28,7 @@ class LocationController extends AbstractController
 
     /**
      * @Route("/new", name="app_location_new", methods={"GET", "POST"})
+     * @IsGranted("ROLE_LOCATION_CREATE")
      */
     public function new(Request $request, LocationRepository $locationRepository): Response
     {
@@ -57,9 +59,9 @@ class LocationController extends AbstractController
             'location' => $location,
         ]);
     }
-
     /**
      * @Route("/{id}/edit", name="app_location_edit", methods={"GET", "POST"})
+     * @IsGranted("ROLE_LOCATION_EDIT")
      */
     public function edit(Request $request, Location $location, LocationRepository $locationRepository): Response
     {
@@ -82,6 +84,7 @@ class LocationController extends AbstractController
 
     /**
      * @Route("/{id}", name="app_location_delete", methods={"POST"})
+     * @IsGranted("ROLE_LOCATION_DELETE")
      */
     public function delete(Request $request, Location $location, LocationRepository $locationRepository): Response
     {

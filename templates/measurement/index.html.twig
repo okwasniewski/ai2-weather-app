@@ -24,7 +24,9 @@
           <td>{{ measurement.celsius }}</td>
           <td>
             <a href="{{ path('app_measurement_show', { id: measurement.id }) }}">show</a>
-            <a href="{{ path('app_measurement_edit', { id: measurement.id }) }}">edit</a>
+            {% if is_granted('ROLE_MEASUREMENT_EDIT') %}
+              <a href="{{ path('app_measurement_edit', { id: measurement.id }) }}">edit</a>
+            {% endif %}
           </td>
         </tr>
       {% else %}
@@ -34,7 +36,8 @@
       {% endfor %}
     </tbody>
   </table>
-
-  <a href="{{ path('app_measurement_new') }}">Create new</a>
+  {% if is_granted('ROLE_MEASUREMENT_CREATE') %}
+    <a href="{{ path('app_measurement_new') }}">Create new</a>
+  {% endif %}
   <a href="{{ path('app_location_index') }}">Go to location</a>
 {% endblock %}

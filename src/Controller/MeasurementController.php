@@ -8,6 +8,7 @@ use App\Repository\MeasurementRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -27,6 +28,7 @@ class MeasurementController extends AbstractController
 
     /**
      * @Route("/new", name="app_measurement_new", methods={"GET", "POST"})
+     * @IsGranted("ROLE_MEASUREMENT_CREATE")
      */
     public function new(Request $request, MeasurementRepository $measurementRepository): Response
     {
@@ -60,6 +62,7 @@ class MeasurementController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="app_measurement_edit", methods={"GET", "POST"})
+     * @IsGranted("ROLE_MEASUREMENT_EDIT")
      */
     public function edit(Request $request, Measurement $measurement, MeasurementRepository $measurementRepository): Response
     {
@@ -82,6 +85,7 @@ class MeasurementController extends AbstractController
 
     /**
      * @Route("/{id}", name="app_measurement_delete", methods={"POST"})
+     * @IsGranted("ROLE_MEASUREMENT_DELETE")
      */
     public function delete(Request $request, Measurement $measurement, MeasurementRepository $measurementRepository): Response
     {
