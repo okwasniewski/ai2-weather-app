@@ -1,0 +1,7 @@
+{ "location": {
+
+"city": {{ city }}
+
+}, "measurements": [{% for weather in measurements -%}
+  { "celsius": {{ weather.celsius }}, "fahrenheit":{{ weather.fahrenheit }} }{%- if not loop.last %},{% endif %}
+{%- endfor %}] }

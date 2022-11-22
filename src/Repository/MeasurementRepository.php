@@ -40,13 +40,12 @@ class MeasurementRepository extends ServiceEntityRepository
         }
     }
 
-    public function findByLocation($location)
+    public function findByLocation(Location $location)
     {
-        $qb = $this->createQueryBuilder('m');
-        $qb->where('m.id = :location')
+        $var = $this->createQueryBuilder('weather');
+        $var->where('weather.id = :location')
             ->setParameter('location', $location);
-
-        return $qb->getQuery()->getResult();
+        return $var->getQuery()->getResult();
     }
 
     //    /**

@@ -31,6 +31,11 @@ class Measurement
     /**
      * @ORM\Column(type="decimal", precision=3, scale=0)
      */
+    private $farenheit;
+
+    /**
+     * @ORM\Column(type="decimal", precision=3, scale=0)
+     */
     private $celsius;
 
     public function getId(): ?int
@@ -41,6 +46,11 @@ class Measurement
     public function getLocation(): ?Location
     {
         return $this->location;
+    }
+
+    public function getFahrenheit(): ?string
+    {
+        return strval(intval($this->celsius) * 1.8 + 32);
     }
 
     public function setLocation(?Location $location): self

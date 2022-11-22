@@ -3,6 +3,9 @@ weather_in_city:
   controller: App\Controller\WeatherController:cityAction
   requirements:
     city: \d+
+weather_in_city_api:
+  path: /weather/api/{type}/{city}
+  controller: App\Controller\WeatherApiController:weatherApiAction
 app_logout:
     path: /logout
     methods: GET

@@ -1,0 +1,6 @@
+city,celsius,fahrenheit <br />
+{% for weather in measurements %}
+  {{ city }},
+  {{- weather.celsius }},
+  {{- weather.fahrenheit }}
+{% endfor %}
